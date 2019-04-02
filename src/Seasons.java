@@ -4,20 +4,18 @@ import java.io.InputStreamReader;
 
 public class Seasons {
 
-   public enum Season {
+    public enum Season {
         WINTER, SPRING, SUMMER, AUTUMN
     }
 
-    public static void main(String[ ] args) throws IOException {
-        Season season ;
-        season = Season.WINTER;
-
-        BufferedReader br = new BufferedReader( new InputStreamReader(System.in));
+    public static void main(String[] args) throws IOException {
+        Season season;
+        season = null;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter month");
         String month = br.readLine();
+
         switch (month) {
-
-
             case "December":
             case "January":
             case "February":
@@ -42,7 +40,11 @@ public class Seasons {
             default:
                 System.out.println("No this month");
         }
-        System.out.println("This is "+season);
+        if (season == null) {
+            System.out.println("  ");
+        } else {
+            System.out.println(season);
+        }
     }
 
 }
