@@ -3,36 +3,39 @@ package Student;
 public class Student {
     private String name;
     private int rating;
+    public static double count;
+    public static double sum;
+    public static double AvgRating;
 
     public Student(String name, int rating) {
         this.name = name;
         this.rating = rating;
+        count++;
+        sum+=rating;
+        AvgRating=sum/count;
     }
 
     public Student(String name) {
         this.name = name;
+        count++;
     }
 
-    public Student() { }
+    public Student() { count++;}
 
-    public static boolean betterStudent(int a, int b) {
-        return a > b;
+    public static double getAvgRating() {
+      if(count==0.00) {return AvgRating=0.00;}
+      else {
+      return AvgRating;
+    }}
+
+
+    public  boolean betterStudent(Student student2) {
+        return getRating() > student2.rating;
     }
 
-    public static int av(int r1, int r2, int r3) {
-        int s = 0;
-        s = (r1 + r2 + r3) / 3;
-        return s;
-    }
-
+    @Override
     public String toString() {
-        System.out.println(name);
-        return name;
-    }
-
-    public String toString(String s1) {
-        System.out.println(s1 + " ");
-        return (s1);
+        return "Student [Name = "+getName()+", rating "+getRating()+"]";
     }
 
     public String getName() {
@@ -49,11 +52,24 @@ public class Student {
 
     public void setRating(int rating) {
         this.rating = rating;
+        sum+=rating;
+        AvgRating=sum/count;
+
     }
 
-    public int changeRating(int rating) {
-        int newrating = 0;
-        newrating = rating + 10;
-        return newrating;
+    public void changeRating(int rating) {
+        int irating = rating;
+        double drating = irating;
+        sum-= this.rating;
+        sum+= drating;
+        this.rating=rating;
+        AvgRating=sum/count;
+    }
+
+    public static void removeStudent(Student student) {
+        count--;
+        sum-=student.rating;
+        AvgRating=sum/count;
+        student = null;
     }
 }
